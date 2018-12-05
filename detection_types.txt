@@ -1,0 +1,34 @@
+
+Specific Behavior
+Specific Behavior, Tainted
+Specific Behavior,Tainted
+General Behavior
+General Behavior, Tainted
+Specific Behavior, Delayed
+Specific Behavior,Delayed
+General Behavior, Delayed
+General Behavior,Delayed
+General Behavior,Delayed,Tainted
+Enrichment
+Enrichment, Tainted
+Enrichment,Tainted
+Enrichment, Delayed
+Enrichment, Delayed, Tainted
+Enrichment,Delayed, Tainted
+Enrichment,Delayed,Tainted
+Enrichment, Tainted, Delayed
+Enrichment,Tainted, Delayed
+Telemetry
+Telemetry, Tainted
+Telemetry,Tainted
+Specific Behavior,Configuration Change
+General Behavior, Configuration Change, Delayed, Tainted
+General Behavior,Configuration Change
+General Behavior,Configuration Change, Delayed, Tainted
+Enrichment, Configuration Change
+Enrichment,Configuration Change
+Enrichment, Tainted,Configuration Change
+Enrichment,Tainted,Configuration Change
+Indicator of Compromise,Configuration Change
+Telemetry,Configuration Change
+None
