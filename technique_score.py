@@ -41,7 +41,6 @@ scoring = { 'Specific Behavior':5,                                          \
 def generate_score(data):
     totalscore = 0
     for technique in data.values():
-        techniquescore = 0
         for step in technique['Steps'].values():
             techniquescore = 0
             for detection in step['DetectionCategories']:
