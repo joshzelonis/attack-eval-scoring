@@ -105,9 +105,6 @@ class QueryAttackEval:
 			self.get_technique(self.args.technique.upper())
 		elif args.procedure:
 			self.get_procedure(self.args.procedure.upper())
-		else:
-			self.parser.print_help()
-			sys.exit(1)
 
 
 def parse_args():
