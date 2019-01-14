@@ -53,7 +53,6 @@ class QueryAttackEval:
 		procedures = []
 		detections = []
 		notes = []
-		print(f'\n\n{self.filename}')
 		for technique_id, technique in self.data.items():
 			if self.args.technique and not technique_id == self.args.technique:
 				continue
@@ -71,42 +70,44 @@ class QueryAttackEval:
 						if re.search(substring, v, re.IGNORECASE):
 							notes.append('{:20}{}\t{}'.format(f'{step_id}:{technique_id})', k, v))
 
+		if len(techniques) or len(procedures) or len(detections) or len(notes):
+			print(f'{self.filename}')
 		if len(techniques):
-			print('\nTechniques\n----------')
+			print('\n  Techniques\n  ----------')
 			for technique in techniques:
 				print(f'  {technique}')
 		if len(procedures):
-			print('\nProcedures\n----------')
+			print('\n  Procedures\n  ----------')
 			for procedure in procedures:
 				print(f'  {procedure}')
 		if len(detections):
-			print('\nDetections\n----------')
+			print('\n  Detections\n  ----------')
 			for detection in detections:
 				print(f'  {detection}')
 		if len(notes):
-			print('\nDetection Notes\n---------------')
+			print('\n  Detection Notes\n  ---------------')
 			for note in notes:
 				print(f'  {note}')
 		return
 
 	def run(self, infile):
-			if not re.search(args.vendor, infile, re.IGNORECASE):
-				return
-			else:
-				self.filename = infile
+		if not re.search(args.vendor, infile, re.IGNORECASE):
+			return
+		else:
+			self.filename = infile
 
-			with open(self.filename) as json_data:
-				self.data = json.load(json_data)
+		with open(self.filename) as json_data:
+			self.data = json.load(json_data)
 
-			if self.args.search:
-				self.search_eval(self.args.search)
-			elif self.args.technique:
-				self.get_technique(self.args.technique)
-			elif args.procedure:
-				self.get_procedure(self.args.procedure)
-			else:
-				self.parser.print_help()
-				sys.exit(1)
+		if self.args.search:
+			self.search_eval(self.args.search)
+		elif self.args.technique:
+			self.get_technique(self.args.technique.upper())
+		elif args.procedure:
+			self.get_procedure(self.args.procedure.upper())
+		else:
+			self.parser.print_help()
+			sys.exit(1)
 
 
 def parse_args():
