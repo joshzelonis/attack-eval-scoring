@@ -3,7 +3,7 @@ For my initial blog post on the subject, check out:
 https://go.forrester.com/blogs/measuring-vendor-efficacy-using-the-mitre-attck-evaluation/
 
 ## simple_score.py
-In parsing the results, I found 56 ATT&CK techniques were measured with 195 procedures for doing so. This is a quick script for applying the scale on a procedure (or per step) basis.
+In parsing the results, I found 56 ATT&CK techniques were measured with 136 procedures for doing so. This is a quick script for applying the scale on a procedure (or per step) basis. There were many instances where there were multiple detections for a single procedure/step which would skew any counting method that did not take this into effect.
 
 ## kill_chain_analysis.py
 There were 10 different stages of attack measured from initial compromise to execution of persistence across two scenarios. One may argue that the most critical capability is being able to alert on an aversary at each stage of an intrusion. This script analyzes and breaks out how each vendor performed at each stage of these scenarios on the same 1-3-5 scale used by simple_score.py
