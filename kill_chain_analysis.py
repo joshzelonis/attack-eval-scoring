@@ -36,6 +36,10 @@ scoring = { 'Specific Behavior':5,                                          \
             'Enrichment,Tainted,Configuration Change':0,                    \
             'Indicator of Compromise,Configuration Change':0,               \
             'Telemetry,Configuration Change':0,                             \
+            'General Behavior, Configuration Change':0,                     \
+            'Telemetry, Configuration Change':0,                            \
+            'Indicator of Compromise':0,                                    \
+            'Indicator of Compromise, Delayed':0,                           \
             'None':0 }
 
 scenario = ['Initial Compromise',				\
