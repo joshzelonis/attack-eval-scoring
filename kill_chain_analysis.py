@@ -53,12 +53,16 @@ scenario = ['Initial Compromise',				\
 			'Exfiltration',						\
 			'Execution of Persistence' ]
 
+detect_enum = {0:'None', 1:'Telemetry', 3:'Enrichment', 5:'Alert'}
+
 def generate_score(data):
     totalscore = {}
     for i in range(20):
         totalscore[i] = 0
 
-    for technique in data.values():
+    for technique_id, technique in data.items():
+        if technique_id == 'PublicRelease':
+            continue
         for step_id, step in technique['Steps'].items():
             id = (int(step_id.split('.',1)[0]) - 1)
             for detection in step['DetectionCategories']:
@@ -76,9 +80,9 @@ for infile in glob.glob(os.path.join(path, '*json')):
         print(f'{infile}')
         print('  Cobalt Strike:')
         for i in range(10):
-            print(f'    {scenario[i]}: {score[i]}')
+            print(f'    {scenario[i]}: {detect_enum[score[i]]}')
         print('  Empire:')
         for i in range(10,20):
-            print(f'    {scenario[i%10]}: {score[i]}')
+            print(f'    {scenario[i%10]}: {detect_enum[score[i]]}')
     
     

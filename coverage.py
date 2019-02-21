@@ -45,7 +45,9 @@ scoring = { 'Specific Behavior':5,                                          \
 
 def generate_score(data):
     totalscore = {0:0, 1:0, 3:0, 5:0, 'tainted':0}
-    for technique in data.values():
+    for technique_id, technique in data.items():
+        if technique_id == 'PublicRelease':
+            continue
         for step in technique['Steps'].values():
             if not len(step["Procedure"]):
                 continue

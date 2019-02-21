@@ -33,6 +33,8 @@ class QueryAttackEval:
 		found_proc = False
 		print(f'{self.filename}')
 		for technique_id, technique in self.data.items():
+			if technique_id == 'PublicRelease':
+  				continue
 			if procedure_id in technique['Steps']:
 				step = technique['Steps'][procedure_id]
 				if not len(step["Procedure"]):
@@ -54,6 +56,8 @@ class QueryAttackEval:
 		detections = []
 		notes = []
 		for technique_id, technique in self.data.items():
+			if technique_id == 'PublicRelease':
+  				continue
 			if self.args.technique and not technique_id == self.args.technique:
 				continue
 			if re.search(substring, technique['TechniqueName'], re.IGNORECASE):

@@ -5,7 +5,9 @@ import os
 
 def generate_score(data):
     totalmisses = 0
-    for technique in data.values():
+    for technique_id, technique in data.items():
+        if technique_id == 'PublicRelease':
+            continue
         for step in technique['Steps'].values():
             for detection in step['DetectionCategories']:
                 for k,v in detection.items():
