@@ -34,6 +34,7 @@ scoring = { 'Specific Behavior':5,                                          \
             'Enrichment, Configuration Change':0,                           \
             'Enrichment,Configuration Change':0,                            \
             'Enrichment, Tainted,Configuration Change':0,                   \
+            'Enrichment, Tainted, Configuration Change':0,                  \
             'Enrichment,Tainted,Configuration Change':0,                    \
             'Indicator of Compromise,Configuration Change':0,               \
             'Telemetry,Configuration Change':0,                             \

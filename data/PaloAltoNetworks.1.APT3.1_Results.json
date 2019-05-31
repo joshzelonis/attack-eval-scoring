@@ -1,0 +1,3156 @@
+{
+    "T1204": {
+        "TechniqueName": "User Execution",
+        "TacticGroup": "Execution",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "1.A.1": {
+                "Procedure": "Previously executed batch file (pdfhelper.cmd) launched a DLL payload (update.dat) using Rundll32",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed that Resume Viewer.exe was executed and running as a process owned by user Debbie."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-1.A.1-1.png": "Telemetry showing Resume Viewer.exe running as a process",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1064": {
+        "TechniqueName": "Scripting",
+        "TacticGroup": "Defense Evasion, Execution",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "1.A.1": {
+                "Procedure": "Previously executed self-extracting archive (Resume Viewer.exe) launched an embedded batch file (pdfhelper.cmd)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed cmd.exe launching pdfhelper.cmd."
+                    },
+                    {
+                        " Specific Behavior": " A Specific Behavior alert was generated for execution of the Windows script engine. The alert was tagged with the correct ATT&CK Technique (Scripting)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-1.A.1-2.png": "Telemetry showing cmd.exe launching pdfhelper.cmd",
+                    "PA-1.A.1-3.png": "Specific Behavior alert for execution of Windows script engine tagged with the correct ATT&CK Technique (Scripting)",
+                    "": ""
+                }
+            },
+            "11.A.1": {
+                "Procedure": "Legitimate user Bob clicked and executed malicious VBScript (autoupdate.vbs) on 10.0.1.5 (CodeRed)",
+                "DetectionCategories": [
+                    {
+                        "Specific Behavior": "A Specific Behavior alert was generated for the execution of the windows script engine The alert was tagged with the correct ATT&CK Technique (Scripting)."
+                    },
+                    {
+                        " Specific Behavior": " A Specific Behavior alert was generated for PowerShell execution. The alert was tagged with a related Technique (PowerShell)"
+                    },
+                    {
+                        " Specific Behavior": "A Specific Behavior alert was generated for suspicious PowerShell activity"
+                    },
+                    {
+                        " Indicator of Compromise": " Indicator of Compromise alerts were generated for suspicious PowerShell strings."
+                    },
+                    {
+                        " Indicator of Compromise": "An Indicator of Compromise alert was generated identifying PowerShell Empire."
+                    },
+                    {
+                        " Specific Behavior": " A Specific Behavior alert was generated for PowerShell execution with base64 encoded commands."
+                    },
+                    {
+                        " Telemetry, Tainted": " Telemetry showed wscript.exe executing autoupdate.vbs as well as the resulting powershell.exe execution. The telemetry was tainted by a parent alert on wscript.exe."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-11.A.1-3.png": "Specific Behavior alert for execution of the windows script engine tagged with the correct ATT&CK Technique (Scripting)",
+                    "PA-11.A.1-6.png": "Specific Behavior alert for PowerShell (execution) tagged with a related Technique (PowerShell)",
+                    "PA-11.A.1-7.png": "Specific Behavior alert for suspicious PowerShell activity",
+                    "PA-11.A.1-8.png": "Indicator of Compromise alerts for suspicious PowerShell strings",
+                    "PA-11.A.1-4.png": "Indicator of Compromise alert identifying PowerShell Empire",
+                    "PA-11.A.1-5.png": "Specific Behavior alert for PowerShell execution with base64 encoded commands",
+                    "PA-11.A.1-1.png": "Telemetry showing wscript.exe executing autoupdate.vbs (tainted by a parent alert on wscript.exe)",
+                    "PA-11.A.1-2.png": "Telemetry showing powershell.exe running with command-line arguments (tainted by a parent alert on wscript.exe)"
+                }
+            },
+            "12.E.1": {
+                "Procedure": "Empire: Built-in WinEnum module executed to programmatically execute a series of enumeration techniques",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing with command-line arguments as well as PowerShell module (.psm) and script (.ps1) files being written to disk. The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Specific Behavior, Tainted": " A Specific Behavior alert was generated for PowerShell execution with base64 encoded commands. The alert was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Indicator of Compromise": " An Indicator of Compromise alert was generated identifying suspicious PowerShell strings as Empire WinEnum."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.E.1-1.png": "Telemetry showing powershell.exe executing with command-line arguments as well as PowerShell module (.psm) and script (.ps1) files being written to disk (tainted by a parent alert on wscript.exe)",
+                    "PA-12.E.1-2.png": "Specific Behavior alert for PowerShell execution with base64 encoded commands (tainted by a parent alert on wscript.exe)",
+                    "PA-12.E.1-3.png": "Indicator of Compromise alert identifying suspicious PowerShell strings as Empire WinEnum",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1085": {
+        "TechniqueName": "Rundll32",
+        "TacticGroup": "Execution",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "1.A.1": {
+                "Procedure": "Legitimate user Debbie clicked and executed malicious self-extracting archive (Resume Viewer.exe) on 10.0.1.6 (Nimda)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed rundll32.exe executing update.dat with command-line arguments. The telemetry was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    },
+                    {
+                        " Specific Behavior, Tainted": " Specific Behavior alerts were generated for rundll32. The alerts were tagged with the correct ATT&CK Technique (Rundll32) and were tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    },
+                    {
+                        " General Behavior, Tainted": " A General Behavior alert was generated based on rundll32.exe executing update.dat, identified as a suspicious DLL and malware. The alert was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine. [PA1]"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-1.A.1-4.png": "Telemetry showing rundll32.exe executing update.dat (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-1.A.1-5.png": "Specific Behavior alerts for rundll32 tagged with the correct ATT&CK Technique (Rundll32) (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-1.A.1-6.png": "General Behavior alert for rundll32.exe executing update.dat, identified as a suspicious DLL and malware (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-1.A.1-7.png": "Additional details of General Behavior alert for rundll32.exe executing update.dat",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1060": {
+        "TechniqueName": "Registry Run Keys / Startup Folder",
+        "TacticGroup": "Persistence",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "1.B.1": {
+                "Procedure": "Previously executed batch file (pdfhelper.cmd) moved a separate batch file (autoupdate.bat) to the Startup folder",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed autoupdate.bat being moved to the user Debbie's Startup folder. The telemetry was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    },
+                    {
+                        " Enrichment, Tainted, Configuration Change": " The capability enriched a file being created in the Startup folder with the correct ATT&CK Technique (Registry Run Keys / Start Folder). The data was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine.[PA6]"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-1.B.1-1.png": "Telemetry showing autoupdate.bat being moved to the user Debbie's Startup folder (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-1.B.1-2.png": "Enrichment of a file being created in the Startup folder tagged with the correct ATT&CK Technique (Registry Run Keys / Start Folder) (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "": ""
+                }
+            },
+            "10.A.1": {
+                "Procedure": "Batch file (autoupdate.bat) previously written to Startup folder executed when user Debbie logs on to Nimda (10.0.1.6), launching a DLL payload (update.dat) using Rundll32",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed cmd.exe executing autoupdate.bat from the Startup folder."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-10.A.1-1.png": "Telemetry showing cmd.exe executing autoupdate.bat from the Startup folder",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1043": {
+        "TechniqueName": "Commonly Used Port",
+        "TacticGroup": "Command and Control",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "1.C.1": {
+                "Procedure": "Cobalt Strike: C2 channel established using port 53",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed port 53 command and control traffic. The telemetry was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine.[PA2]"
+                    },
+                    {
+                        " Specific Behavior, Tainted": " A Specific Behavior alert was generated for a scripting engine (rundll32.exe) making a network connection over DNS ports. The alert was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-1.C.1-1.png": "Telemetry showing port 53 command and control traffic (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-1.C.1-2.png": "Specific Behavior alert for a scripting engine (rundll32.exe) making a network connection over DNS ports (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "": ""
+                }
+            },
+            "6.B.1": {
+                "Procedure": "Cobalt Strike: C2 channel modified to use port 80",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed port 80 command and control traffic.[PA2]"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-6.B.1-1.png": "Telemetry showing port 80 command and control traffic",
+                    "": ""
+                }
+            },
+            "11.B.1": {
+                "Procedure": "Empire: C2 channel established using port 443",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed port 443 network connections to www.freegoogleadsenseinfo.com (C2 domain). The telemetry was tainted by a parent alert on wscript.exe.[PA2]"
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched the port 443 network connection with the correct ATT&CK Technique (Commonly Used Port). The data was tainted by a parent alert on wscript.exe.[PA2]"
+                    },
+                    {
+                        " General Behavior, Tainted": " General Behavior alerts were generated for PowerShell making network connections to the internet as well as Wscript connecting to an external network. The alerts were tainted by a parent alert on wscript.exe.[PA2]"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-11.B.1-1.png": "Telemetry showing port 443 network connections to www.freegoogleadsenseinfo.com (C2 domain) (tainted by a parent alert on wscript.exe)",
+                    "PA-11.A.1-3.png": "Enrichment of the port 443 network connection with the correct ATT&CK Technique (Commonly Used Port) (tainted by a parent alert on wscript.exe)",
+                    "PA-11.B.1-2.png": "General Behavior alerts for PowerShell making network connections to the internet as well as Wscript connecting to an external network (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            },
+            "14.A.1": {
+                "Procedure": "Empire: UAC bypass module downloaded a new Empire stager (wdbypass) over port 8080",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed an outgoing network connection to www.freegoogleadsenseinfo.com (C2 domain) over port 8080."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-14.A.1-4.png": "Telemetry showing an outgoing network connection to www.freegoogleadsenseinfo.com (C2 domain) over port 8080",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1071": {
+        "TechniqueName": "Standard Application Layer Protocol",
+        "TacticGroup": "Command and Control",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "1.C.1": {
+                "Procedure": "Cobalt Strike: C2 channel established using both NetBIOS and base64 encoding",
+                "DetectionCategories": [
+                    {
+                        "None": "No detection capability demonstrated for this procedure.[PA2]"
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "6.B.1": {
+                "Procedure": "Cobalt Strike: C2 channel modified to use HTTP traffic to freegoogleadsenseinfo.com",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed port 80 command and control traffic as well as the loading of winhttp.dll, which an analyst could use to determine HTTP was used."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-6.B.1-1.png": "Telemetry showing port 80 command and control traffic as well as the loading of winhttp.dll",
+                    "": ""
+                }
+            },
+            "11.B.1": {
+                "Procedure": "Empire: C2 channel established using HTTPS traffic to freegoogleadsenseinfo.com",
+                "DetectionCategories": [
+                    {
+                        "None": "No detection capability demonstrated for this procedure.[PA2]"
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "14.A.1": {
+                "Procedure": "Empire: UAC bypass module downloaded a new Empire stager (wdbypass) over HTTP",
+                "DetectionCategories": [
+                    {
+                        "None": "No detection capability demonstrated for this procedure, though telemetry showed an encoded PowerShell command that could be decoded outside the capability to show the IEX command used to download the file (wdbypass) over HTTP port 8080."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-14.A.1-5.png": "Telemetry showing decoded PowerShell showing download request over HTTP (does not count as a detection due to decoding outside of capability)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1132": {
+        "TechniqueName": "Data Encoding",
+        "TacticGroup": "Command and Control",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "1.C.1": {
+                "Procedure": "Cobalt Strike: C2 channel established using DNS traffic to freegoogleadsenseinfo.com",
+                "DetectionCategories": [
+                    {
+                        "None": "No detection capability demonstrated for this procedure.[PA2]"
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1059": {
+        "TechniqueName": "Command-Line Interface",
+        "TacticGroup": "Execution",
+        "PrimaryEnabling": "Enabling",
+        "Steps": {
+            "2.A.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "2.A.2": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "2.B.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "2.C.2 ": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "2.D.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "2.D.2": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "2.E.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "2.E.2": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "2.F.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "2.F.2": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "2.F.3": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "2.G.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "2.G.2": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "2.H.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "4.A.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "4.A.2": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "4.B.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "4.C.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "6.A.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "7.C.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "8.A.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "8.A.2": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "16.F.1": {
+                "Procedure": "Empire: Built-in runas module executed to launch malicious VBScript (autoupdate.vbs) as user Kmitnick ",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed cmd.exe executing autoupdate.vbs. The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment": " The capability enriched wscript.exe executing autoupdate.vbs with a related ATT&CK Technique (Scripting)."
+                    },
+                    {
+                        " Indicator of Compromise": " An Indicator of Compromise Alert was generated identify PowerShell Empire using the Runas functionality."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-16.F.1-1.png": "Telemetry showing cmd.exe executing autoupdate.vbs (tainted by a parent alert on wscript.exe)",
+                    "PA-16.F.1-2.png": "Enrichment of wscript.exe executing autoupdate.vbs with a related ATT&CK Technique (Scripting).",
+                    "PA-16.F.1-3.png": "Indicator of Compromise Alert identifying PowerShell Empire using the Runas functionality",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1016": {
+        "TechniqueName": "System Network Configuration Discovery",
+        "TacticGroup": "Discovery",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "2.A.1": {
+                "Procedure": "Cobalt Strike: 'ipconfig /all' via cmd",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed cmd.exe executing ipconfig with command-line arguments. The telemetry was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    },
+                    {
+                        " Enrichment": " The capability enriched ipconfig.exe executing with the correct ATT&CK Technique (System Network Configuration Discovery)."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched the execution of ipconfig.exe as the execution of an enumeration command. The data was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    },
+                    {
+                        " General Behavior, Tainted": " A General Behavior alert was generated for a commonly abused process (cmd.exe) spawning out of rundll32.exe. The alert was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-2.A.1-1.png": "Telemetry showing cmd.exe executing ipconfig with command-line arguments (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-2.A.1-2.png": "Enrichment of ipconfig.exe executing with the correct ATT&CK Technique (System Network Configuration Discovery)",
+                    "PA-2.A.1-3.png": "Enrichment of the execution of ipconfig.exe as the execution of an enumeration command (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-2.A.1-4.png": "General Behavior alert for a commonly abused process (cmd.exe) spawning out of rundll32.exe (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "": ""
+                }
+            },
+            "2.A.2": {
+                "Procedure": "Cobalt Strike: 'arp -a' via cmd",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed cmd.exe executing arp with command-line arguments. The telemetry was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    },
+                    {
+                        " Enrichment": " The capability enriched arp.exe executing with the correct ATT&CK Technique (System Network Configuration Discovery)."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched the execution of arp.exe as possible reconnaissance as well as the execution of an enumeration command. The data was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-2.A.2-1.png": "Telemetry showing cmd.exe executing arp with command-line arguments (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-2.A.2-2.png": "Enrichment of arp.exe executing with the correct ATT&CK Technique (System Network Configuration Discovery)",
+                    "PA-2.A.2-3.png": "Enrichment the execution of arp.exe as possible reconnaissance (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-2.A.2-4.png": "Enrichment of the execution of arp.exe as the execution of an enumeration command (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "": ""
+                }
+            },
+            "4.B.1": {
+                "Procedure": "Cobalt Strike: 'netsh advfirewall show allprofiles' via cmd",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed cmd.exe executing netsh with command-line arguments."
+                    },
+                    {
+                        " Enrichment": " The capability enriched netsh.exe executing with the correct ATT&CK Technique (System Network Configuration Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-4.B.1-1.png": "Telemetry showing cmd.exe executing netsh with command-line arguments",
+                    "PA-4.B.1-2.png": "Enrichment of netsh.exe executing with the correct ATT&CK Technique (System Network Configuration Discovery)",
+                    "": ""
+                }
+            },
+            "12.A.1": {
+                "Procedure": "Empire: 'route print' via PowerShell",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing route.exe with command-line arguments. The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment": " The capability enriched route.exe executing with the correct ATT&CK Technique (System Network Configuration Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.A.1-1.png": "Telemetry showing powershell.exe executing route.exe with command-line arguments (tainted by a parent alert on wscript.exe)",
+                    "PA-12.A.1-2.png": "Enrichment of route.exe executing with the correct ATT&CK Technique (System Network Configuration Discovery)",
+                    "": ""
+                }
+            },
+            "12.A.2": {
+                "Procedure": "Empire: 'ipconfig /all' via PowerShell",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing ipconfig.exe with command-line arguments. The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment": " The capability enriched ipconfig.exe executing with the correct ATT&CK Technique (System Network Configuration Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.A.2-1.png": "Telemetry showing powershell.exe executing ipconfig.exe with command-line arguments (tainted by a parent alert on wscript.exe)",
+                    "PA-12.A.2-2.png": "Enrichment of ipconfig.exe executing with the correct ATT&CK Technique (System Network Configuration Discovery)",
+                    "": ""
+                }
+            },
+            "12.E.1.11": {
+                "Procedure": "Empire: WinEnum module included enumeration of network adapters",
+                "DetectionCategories": [
+                    {
+                        "Indicator of Compromise": "An Indicator of Compromise alert was generated identifying suspicious PowerShell strings as Empire NetInfo."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.E.1.11-1.png": "Indicator of Compromise alert identifying suspicious PowerShell strings as Empire NetInfo",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1033": {
+        "TechniqueName": "System Owner/User Discovery",
+        "TacticGroup": "Discovery",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "2.B.1": {
+                "Procedure": "Cobalt Strike: 'echo' via cmd to enumerate specific environment variables",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed cmd.exe executing echo with command-line arguments. The telemetry was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    },
+                    {
+                        " Enrichment": " The capability enriched cmd.exe executing echo with the correct ATT&CK Technique (System Owner / User Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-2.B.1-1.png": "Telemetry showing cmd.exe executing echo with command-line arguments (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-2.B.1-2.png": "Enrichment of cmd.exe executing echo with the correct ATT&CK Technique (System Owner / User Discovery)",
+                    "": ""
+                }
+            },
+            "12.B.1": {
+                "Procedure": "Empire: 'whoami /all /fo list' via PowerShell",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing whoami.exe with command-line arguments. The telemetry was tainted by a parent alert on wscript.exe."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.B.1-1.png": "Telemetry showing powershell.exe executing whoami.exe with command-line arguments (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            },
+            "12.E.1.1": {
+                "Procedure": "Empire: WinEnum module included enumeration of user information",
+                "DetectionCategories": [
+                    {
+                        "Indicator of Compromise": "An Indicator of Compromise alert was generated identifying suspicious PowerShell strings as Empire UserInfo."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.E.1.1-1.png": "Indicator of Compromise alert identifying suspicious PowerShell strings as Empire UserInfo",
+                    "": ""
+                }
+            },
+            "20.B.1": {
+                "Procedure": "Executed 'whoami' via cmd persistence mechanism through RDP connection made to Creeper (10.0.0.4)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed magnify.exe executing whoami.exe."
+                    },
+                    {
+                        " Enrichment": " The capability enriched whoami.exe executing as an enumeration command."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-20.B.1-1.png": "Telemetry showing magnify.exe executing whoami.exe",
+                    "PA-20.B.1-2.png": "Enrichment of whoami.exe executing as an enumeration command",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1106": {
+        "TechniqueName": "Execution through API",
+        "TacticGroup": "Execution",
+        "PrimaryEnabling": "Enabling",
+        "Steps": {
+            "2.C.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "3.B.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "8.B.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "8.C.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "8.D.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "9.A.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "9.B.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "12.E.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1057": {
+        "TechniqueName": "Process Discovery",
+        "TacticGroup": "Discovery",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "2.C.1": {
+                "Procedure": "Cobalt Strike: 'ps' (Process status) via Win32 APIs",
+                "DetectionCategories": [
+                    {
+                        "Enrichment, Tainted": "The capability enriched the execution of a specific API call as process enumeration and suspicious activity. The data was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine.[PA7]"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-2.C.1-1.png": "Enrichment of the execution of a specific API call as process enumeration and suspicious activity (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "": ""
+                }
+            },
+            "2.C.2 ": {
+                "Procedure": "Cobalt Strike: 'tasklist /v' via cmd",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed cmd.exe executing tasklist with command-line arguments. The telemetry was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    },
+                    {
+                        " Enrichment": " The capability enriched tasklist.exe executing with a related ATT&CK Technique (System Information Discovery)."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched the execution of tasklist.exe as the enumeration of running processes via the command line. The data was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-2.C.2-1.png": "Telemetry showing cmd.exe executing tasklist with command-line arguments (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-2.C.2-2.png": "Enrichment of tasklist.exe executing with a related ATT&CK Technique (System Information Discovery)",
+                    "PA-2.C.2-3.png": "Enrichment of the execution of tasklist.exe as the enumeration of running processes via the command line (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "": ""
+                }
+            },
+            "3.B.1": {
+                "Procedure": "Cobalt Strike: 'ps' (Process status) via Win32 APIs",
+                "DetectionCategories": [
+                    {
+                        "Enrichment, Tainted": "The capability enriched the execution of a specific API call as process enumeration and suspicious activity. The data was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine. [PA7]"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-3.B.1-1.png": "Enrichment of the execution of a specific API call as process enumeration and suspicious activity (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "": ""
+                }
+            },
+            "8.B.1": {
+                "Procedure": "Cobalt Strike: 'ps' (Process status) via Win32 APIs",
+                "DetectionCategories": [
+                    {
+                        "Enrichment, Tainted": "The capability enriched the execution of a specific API call as process enumeration and suspicious activity. The data was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine.[PA7]"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-8.B.1-1.png": "Enrichment of the execution of a specific API call as process enumeration and suspicious activity (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "": ""
+                }
+            },
+            "12.C.1": {
+                "Procedure": "Empire: 'qprocess *' via PowerShell",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing qprocess.exe with command-line arguments. The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched the execution of qprocess.exe as the enumeration of running processes via the command line. The data was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment": " The capability enriched qprocess.exe executing with a related ATT&CK Technique (System Service Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.C.1-1.png": "Telemetry showing powershell.exe executing qprocess.exe with command-line arguments (tainted by a parent alert on wscript.exe)",
+                    "PA-12.C.1-2.png": "Enrichment of execution of qprocess.exe as the enumeration of running processes via the command line (tainted by a parent alert on wscript.exe)",
+                    "PA-12.C.1-3.png": "Enrichment of qprocess.exe executing with a related ATT&CK Technique (System Service Discovery)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1007": {
+        "TechniqueName": "System Service Discovery",
+        "TacticGroup": "Discovery",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "2.D.1": {
+                "Procedure": "Cobalt Strike: 'sc query' via cmd",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed cmd.exe executing sc with command-line arguments. The telemetry was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-2.D.1-1.png": "Telemetry showing cmd.exe executing sc with command-line arguments (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "": ""
+                }
+            },
+            "2.D.2": {
+                "Procedure": "Cobalt Strike: 'net start' via cmd",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed cmd.exe executing net with command-line arguments. The telemetry was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched the execution of net.exe as the execution of an enumeration command. The data was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-2.D.2-1.png": "Telemetry showing cmd.exe executing net with command-line arguments (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-2.D.2-3.png": "Enrichment of the execution of net.exe as the execution of an enumeration command (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "": ""
+                }
+            },
+            "12.D.1": {
+                "Procedure": "Empire: 'net start' via PowerShell",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing net.exe with command-line arguments. The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched net.exe executing as the execution of an enumeration command. The data was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " General Behavior, Tainted": " A General Behavior alert was generated for net.exe executing as an enumeration command called by a commonly abused causality group owner (CGO, wscipt.exe). The data was tainted by a parent alert on wscript.exe."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.D.1-1.png": "Telemetry showing powershell.exe executing net.exe with command-line arguments (tainted by a parent alert on wscript.exe)",
+                    "PA-12.D.1-2.png": "Enrichment of net.exe executing as the execution of an enumeration command (tainted by a parent alert on wscript.exe)",
+                    "PA-12.D.1-3.png": "General Behavior alert for net.exe executing as a enumeration command called by a commonly abused causality group owner (CGO, wscript.exe) (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            },
+            "12.E.1.8": {
+                "Procedure": "Empire: WinEnum module included enumeration of services",
+                "DetectionCategories": [
+                    {
+                        "Enrichment": "The capability enriched powershell.exe executing with command-line arguments with the correct ATT&CK Technique (System Service Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.E.1.8-1.png": "Enrichment of powershell.exe executing with command-line arguments with the correct ATT&CK Technique (System Service Discovery)",
+                    "": ""
+                }
+            },
+            "16.H.1": {
+                "Procedure": "Empire: 'sc query' via PowerShell to remotely enumerate services on Creeper (10.0.0.4)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing sc with command-line arguments. The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " General Behavior, Tainted": " A General Behavior alert was generated for the sc utility be used to perform actions of remote services. The alert was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment": " The capability enriched sc.exe executing with command-line arguments with the correct ATT&CK Technique (System Service Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-16.H.1-1.png": "Telemetry showing powershell.exe executing sc with command-line arguments (tainted by a parent alert on wscript.exe)",
+                    "PA-16.H.1-2.png": "General Behavior alert for the sc utility be used to perform actions of remote services (tainted by a parent alert on wscript.exe)",
+                    "PA-16.H.1-3.png": "Enrichment of sc.exe executing with command-line arguments with the correct ATT&CK Technique (System Service Discovery)",
+                    "": ""
+                }
+            },
+            "16.J.1": {
+                "Procedure": "Empire: 'sc qc' via PowerShell to remotely enumerate a specific service on Creeper (10.0.0.4)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing sc.exe with command-line arguments. The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched powershell.exe executing sc.exe as enumeration of services via the command line. The data was tainted by a parent alert on wscript.exe."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-16.J.1-1.png": "Telemetry showing powershell.exe executing sc.exe with command-line arguments (tainted by a parent alert on wscript.exe)",
+                    "PA-16.J.1-2.png": "Enrichment of powershell.exe executing sc.exe as enumeration of services via the command line (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            },
+            "17.A.1": {
+                "Procedure": "Empire: 'reg query' via PowerShell to enumerate a specific Registry key associated with terminal services",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing reg with command-line arguments. The telemetry was tainted by a parent alert on cmd.exe."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched reg.exe executing with command-line arguments as the terminal server key queried by the reg utility. The data was tainted by a parent alert on cmd.exe."
+                    },
+                    {
+                        " Enrichment": " The capability enriched reg.exe executing with command-line arguments with the correct ATT&CK Technique (System Service Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-17.A.1-1.png": "Telemetry showing powershell.exe executing reg with command-line arguments (tainted by a parent alert on cmd.exe)",
+                    "PA-17.A.1-2.png": "Enrichment of reg.exe executing with command-line arguments as the terminal server key queried by the reg utility (tainted by a parent alert on cmd.exe)",
+                    "PA-17.A.1-3.png": "Enrichment of reg.exe executing with command-line arguments with the correct ATT&CK Technique (System Service Discovery).",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1082": {
+        "TechniqueName": "System Information Discovery",
+        "TacticGroup": "Discovery",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "2.E.1": {
+                "Procedure": "Cobalt Strike: 'systeminfo' via cmd",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed cmd.exe executing systeminfo with command-line arguments. The telemetry was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    },
+                    {
+                        " Enrichment": " The capability enriched cmd.exe executing systeminfo with the correct ATT&CK Technique (System Information Discovery)."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched the execution of systeminfo.exe as the execution of an enumeration command. The data was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-2.E.1-1.png": "Telemetry showing cmd.exe executing systeminfo with command-line arguments (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-2.E.1-2.png": "Enrichment of cmd.exe executing systeminfo with the correct ATT&CK Technique (System Information Discovery)",
+                    "PA-2.E.1-3.png": "Enrichment of the execution of systeminfo.exe as the execution of an enumeration command (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "": ""
+                }
+            },
+            "2.E.2": {
+                "Procedure": "Cobalt Strike: 'net config workstation' via cmd",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed cmd.exe executing net with command-line arguments. The telemetry was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    },
+                    {
+                        " Enrichment": " The capability enriched cmd.exe executing net with the correct ATT&CK Technique (System Information Discovery)."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched the execution of net.exe as the execution of an enumeration command. The data was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-2.E.2-1.png": "Telemetry showing cmd.exe executing net with command-line arguments (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-2.E.2-2.png": "Enrichment of cmd.exe executing net with the correct ATT&CK Technique (System Information Discovery)",
+                    "PA-2.E.2-3.png": "Enrichment of the execution of net.exe as the execution of an enumeration command (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "": ""
+                }
+            },
+            "12.E.1.6.1": {
+                "Procedure": "Empire: WinEnum module included enumeration of system information",
+                "DetectionCategories": [
+                    {
+                        "Indicator of Compromise": "An Indicator of Compromise alert was generated identifying suspicious PowerShell strings as Empire SysImfo."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.E.1.6-1.png": "Indicator of Compromise alert identifying suspicious PowerShell strings as Empire SysInfo",
+                    "": ""
+                }
+            },
+            "12.E.1.6.2": {
+                "Procedure": "Empire: WinEnum module included enumeration of Windows update information",
+                "DetectionCategories": [
+                    {
+                        "None": "No detection capability demonstrated for this procedure."
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1069": {
+        "TechniqueName": "Permission Groups Discovery",
+        "TacticGroup": "Discovery",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "2.F.1": {
+                "Procedure": "Cobalt Strike: 'net localgroup administrators' via cmd",
+                "DetectionCategories": [
+                    {
+                        "Enrichment": "The capability enriched net.exe executing with the correct ATT&CK Technique (Permission Groups Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-2.F.1-1.png": "Enrichment of net.exe executing with the correct ATT&CK Technique (Permission Groups Discovery)",
+                    "": ""
+                }
+            },
+            "2.F.2": {
+                "Procedure": "Cobalt Strike: 'net localgroup administrators /domain' via cmd",
+                "DetectionCategories": [
+                    {
+                        "Enrichment": "The capability enriched net.exe executing with the correct ATT&CK Technique (Permission Groups Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-2.F.2-1.png": "Enrichment of net.exe executing with the correct ATT&CK Technique (Permission Groups Discovery)",
+                    "": ""
+                }
+            },
+            "2.F.3": {
+                "Procedure": "Cobalt Strike: 'net group \"Domain Admins\" /domain' via cmd",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed cmd.exe executing net with command-line arguments. The telemetry was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched the execution of net.exe and net1.exe as the possible enumeration of administrator groups. The data was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched the execution of net.exe as the execution of an enumeration command as well as the execution of net1.exe as the execution of an enumeration command using net or net1. The data was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-2.F.3-1.png": "Telemetry showing cmd.exe executing net with command-line arguments (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-2.F.3-2.png": "Enrichment of the execution of net.exe as the possible enumeration of administrator groups (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-2.F.3-5.png": "Enrichment of the execution of net1.exe as the possible enumeration of administrator groups (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-2.F.3-3.png": "Enrichment of the execution of net.exe as the execution of an enumeration command (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-2.F.3-4.png": "Enrichment of the execution of net.exe as the execution of an enumeration command using net or net1 (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "": ""
+                }
+            },
+            "12.E.1.2": {
+                "Procedure": "Empire: WinEnum module included enumeration of AD group memberships",
+                "DetectionCategories": [
+                    {
+                        "None": "No detection capability demonstrated for this procedure."
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "12.F.1": {
+                "Procedure": "Empire: 'net group \"Domain Admins\" /domain' via PowerShell",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing net with command-line arguments. The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched the execution of net.exe and net1.exe as the possible enumeration of administrator groups. The data was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched the execution of net.exe and net1.exe as an enumeration command. The data was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment": " The capability enriched net.exe executing with command-line arguments with the correct ATT&CK Technique (Permission Groups Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.F.1-1.png": "Telemetry showing powershell.exe executing net with command-line arguments (tainted by a parent alert on wscript.exe)",
+                    "PA-12.F.1-2.png": "Enrichment of the execution of net.exe and net1.exe as the possible enumeration of administrator groups (tainted by a parent alert on wscript.exe)",
+                    "PA-12.F.1-3.png": "Enrichment of the execution of net.exe and net1.exe as an enumeration command (tainted by a parent alert on wscript.exe)",
+                    "PA-12.F.1-4.png": "Enrichment of net.exe executing with command-line arguments with the correct ATT&CK Technique (Permission Groups Discovery)",
+                    "": ""
+                }
+            },
+            "12.F.2": {
+                "Procedure": "Empire: 'net localgroup administrators' via PowerShell",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing net with command-line arguments. The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched the execution of net.exe and net1.exe as the possible enumeration of administrator groups. The data was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment": " The capability enriched net.exe executing with command-line arguments with the correct ATT&CK Technique (Permission Groups Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.F.2-1.png": "Telemetry showing powershell.exe executing net with command-line arguments (tainted by a parent alert on wscript.exe)",
+                    "PA-12.F.2-2.png": "Enrichment of the execution of net.exe and net1.exe as the possible enumeration of administrator groups (tainted by a parent alert on wscript.exe)",
+                    "PA-12.F.2-3.png": "Enrichment of net.exe executing with command-line arguments with the correct ATT&CK Technique (Permission Groups Discovery)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1087": {
+        "TechniqueName": "Account Discovery",
+        "TacticGroup": "Discovery",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "2.G.1": {
+                "Procedure": "Cobalt Strike: 'net user /domain' via cmd",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed cmd.exe executing net with command-line arguments. The telemetry was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched the execution of net.exe as the execution of an enumeration command. The data was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-2.G.1-1.png": "Telemetry showing cmd.exe executing net with command-line arguments (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-2.G.1-2.png": "Enrichment of the execution of net.exe as the execution of an enumeration command (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "": ""
+                }
+            },
+            "2.G.2": {
+                "Procedure": "Cobalt Strike: 'net user George /domain' via cmd",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed cmd.exe executing net with command-line arguments. The telemetry was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    },
+                    {
+                        " Enrichment": " The capability enriched net1.exe executing with the correct ATT&CK Technique (Account Discovery)."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched the execution of net.exe as the execution of an enumeration command. The data was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-2.G.2-1.png": "Telemetry showing cmd.exe executing net with command-line arguments (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-2.G.2-2.png": "Enrichment of net1.exe executing with the correct ATT&CK Technique (Account Discovery)",
+                    "PA-2.G.2-3.png": "Enrichment of the execution of net.exe as the execution of an enumeration command (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "": ""
+                }
+            },
+            "7.A.1": {
+                "Procedure": "Microsoft Management Console (Local Users and Groups snap-in) GUI utility displayed user account information",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "\t\nTelemetry showed mmc.exe, the Microsoft Management Console, executing the GUI-based lusrmgr.msc (Local Users and Groups snap-in)."
+                    },
+                    {
+                        " Enrichment": " The capability enriched mmc.exe, the Microsoft Management Console, executing the GUI-based lusrmgr.msc (Local Users and Groups snap-in) as reconnaissance via the MMC utility with local users and groups view."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-7.A.1-1.png": "Telemetry showing lusrmgr.msc running from mmc.exe ",
+                    "PA-7.A.1-5.png": "Enrichment of mmc.exe as reconnaissance via the MMC utility with local users and groups view",
+                    "": ""
+                }
+            },
+            "12.G.1": {
+                "Procedure": "Empire: 'net user' via PowerShell",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing net with command-line arguments. The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment": " The capability enriched net.exe executing with command-line arguments with the correct ATT&CK Technique (Account Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.G.1-1.png": "Telemetry showing powershell.exe executing net with command-line arguments (tainted by a parent alert on wscript.exe)",
+                    "PA-12.G.1-2.png": "Enrichment of net.exe executing with command-line arguments with the correct ATT&CK Technique (Account Discovery)",
+                    "": ""
+                }
+            },
+            "12.G.2": {
+                "Procedure": "Empire: 'net user /domain' via PowerShell",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing net with command-line arguments. The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment": " The capability enriched net.exe executing with command-line arguments with the correct ATT&CK Technique (Account Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.G.2-1.png": "Telemetry showing powershell.exe executing net with command-line arguments (tainted by a parent alert on wscript.exe)",
+                    "PA-12.G.2-2.png": "Enrichment of net.exe executing with command-line arguments with the correct ATT&CK Technique (Account Discovery)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1012": {
+        "TechniqueName": "Query Registry",
+        "TacticGroup": "Discovery",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "2.H.1": {
+                "Procedure": "Cobalt Strike: 'reg query' via cmd to enumerate a specific Registry key",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed cmd.exe executing reg with command-line arguments. The telemetry was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    },
+                    {
+                        " Enrichment": " The capability enriched reg.exe executing with the correct ATT&CK Technique (Query Registry)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-2.H.1-1.png": "Telemetry showing cmd.exe executing reg with command-line arguments (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-2.H.1-2.png": "Enrichment of reg.exe executing with the correct ATT&CK Technique (Query Registry)",
+                    "": ""
+                }
+            },
+            "6.A.1": {
+                "Procedure": "Cobalt Strike: 'reg query' via cmd to remotely enumerate a specific Registry key on Conficker (10.0.0.5)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed cmd.exe executing reg with command-line arguments. The telemetry was tainted by a parent process injection alert on cmd.exe."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched the execution of reg.exe as querying a remote key. The data was tainted by a parent process injection alert on cmd.exe."
+                    },
+                    {
+                        " Enrichment": " The capability enriched reg.exe executing with the correct ATT&CK Technique (Query Registry)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-6.A.1-1.png": "Telemetry showing cmd.exe executing reg with command-line arguments (tainted by a parent process injection alert on cmd.exe)",
+                    "PA-6.A.1-2.png": "Enrichment of the execution of reg.exe as querying a remote key (tainted by a parent process injection alert on cmd.exe)",
+                    "PA-6.A.1-3.png": "Enrichment of reg.exe executing with the correct ATT&CK Technique (Query Registry)",
+                    "": ""
+                }
+            },
+            "12.E.1.7": {
+                "Procedure": "Empire: WinEnum module included enumeration of system information via a Registry query",
+                "DetectionCategories": [
+                    {
+                        "Enrichment, Tainted": "The capability enriched the enumeration of system information via a Registry query as suspicious. The data was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Indicator of Compromise": " An Indicator of Compromise alert was generated identifying suspicious PowerShell strings as Empire SysImfo."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.E.1.7-1.png": "Enrichment of the enumeration of system information via a Registry query as suspicious (tainted by a parent alert on wscript.exe)",
+                    "PA-12.E.1.6-1.png": "Indicator of Compromise alert identifying suspicious PowerShell strings as Empire SysInfo",
+                    "": ""
+                }
+            },
+            "13.C.1": {
+                "Procedure": "Empire: 'reg query' via PowerShell to enumerate a specific Registry key",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing reg with command-line arguments. The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment": " The capability enriched reg.exe executing with command-line arguments with the correct ATT&CK Technique (Query Registry)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-13.B.3-1.png": "Telemetry showing powershell.exe executing reg with command-line arguments (tainted by a parent alert on wscript.exe)",
+                    "PA-13.B.3-2.png": "Enrichment of reg.exe executing with command-line arguments with the correct ATT&CK Technique (Query Registry)",
+                    "": ""
+                }
+            },
+            "17.A.1": {
+                "Procedure": "Empire: 'reg query' via PowerShell to enumerate a specific Registry key",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing reg with command-line arguments to check if terminal services were enabled. The telemetry was tainted by a parent alert on cmd.exe."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched reg.exe executing with command-line arguments as the terminal server key queried by the reg utility. The data was tainted by a parent alert on cmd.exe."
+                    },
+                    {
+                        " Enrichment": " The capability enriched reg.exe executing with command-line arguments with a related ATT&CK Technique (System Service Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-17.A.1-1.png": "Telemetry showing powershell.exe executing reg with command-line arguments to check if terminal services were enabled. (tainted by a parent alert on cmd.exe)",
+                    "PA-17.A.1-2.png": "Enrichment of reg.exe executing with command-line arguments as the terminal server key queried by the reg utility (tainted by a parent alert on cmd.exe)",
+                    "PA-17.A.1-3.png": "Enrichment of reg.exe executing with command-line arguments with a related ATT&CK Technique (System Service Discovery).",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1134": {
+        "TechniqueName": "Access Token Manipulation",
+        "TacticGroup": "Defense Evasion, Privilege Escalation",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "3.A.1": {
+                "Procedure": "Cobalt Strike: Built-in UAC bypass token duplication capability executed to modify current process token",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed svchost.exe executed with the seclogon command-line argument and a subsequent logon event with an elevated token and new logon ID, indicating token manipulation."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-3.A.1-1.png": "Telemetry showing svchost.exe executed with the seclogon command-line argument",
+                    "PA-3.A.1-2.png": "Telemetry showing logon event with an elevated token and new logon ID",
+                    "": ""
+                }
+            },
+            "5.B.1": {
+                "Procedure": "Cobalt Strike: Built-in token theft capability executed to change user context to George",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed a cmd.exe associated with user Debbie spawn a cmd.exe associated with user George, indicating user context change via token manipulation. The telemetry was tainted by a parent process injection alert on cmd.exe."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-5.B.1-1.png": "Telemetry showing a cmd.exe associated with user Debbie spawn a cmd.exe associated with user George, indicating user context change via token manipulation (tainted by a parent process injection alert on cmd.exe)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1088": {
+        "TechniqueName": "Bypass User Account Control",
+        "TacticGroup": "Defense Evasion, Privilege Escalation",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "3.A.1": {
+                "Procedure": "Cobalt Strike: Built-in UAC bypass token duplication capability executed to elevate process integrity level",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed a process integrity level change from parent rundll32.exe (medium / 8192) to child powershell.exe (high / 12288), both running as user Debbie."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-3.A.1-3.png": "Telemetry showing process integrity level change from parent rundll32.exe (medium) to child powershell.exe (high), both running as user Debbie",
+                    "": ""
+                }
+            },
+            "14.A.1": {
+                "Procedure": "Empire: Built-in UAC bypass token duplication module executed to launch new callback with elevated process integrity level",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed a process integrity level change from parent powershell.exe (medium / 8192) to child powershell.exe (high / 12288)."
+                    },
+                    {
+                        " Indicator of Compromise": " An Indicator of Compromise alert was generated identifying a PowerShell Empire script performing the bypass UAC attack."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-14.A.1-1.png": "Telemetry showing powershell.exe running as medium integrity level (8192)",
+                    "PA-14.A.1-2.png": "Telemetry showing powershell.exe running as high integrity level (12288)",
+                    "PA-14.A.1-3.png": "Indicator of Compromise alert identifying a PowerShell Empire script performing the bypass UAC attack.",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1055": {
+        "TechniqueName": "Process Injection",
+        "TacticGroup": "Defense Evasion, Privilege Escalation",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "3.C.1": {
+                "Procedure": "Cobalt Strike: Built-in process injection capability executed to inject callback into cmd.exe",
+                "DetectionCategories": [
+                    {
+                        "Specific Behavior, Tainted": "A Specific Behavior alert was generated for PowerShell injecting shellcode. The alert was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine. [PA7]"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-3.C.1-1.png": "Specific Behavior alert for PowerShell injecting shellcode (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "": ""
+                }
+            },
+            "5.A.1": {
+                "Procedure": "Cobalt Strike: Credential dump capability involved process injection into lsass",
+                "DetectionCategories": [
+                    {
+                        "Specific Behavior": "A Specific Behavior alert was generated for a suspicious handle being opened to lsass.exe. The alert was tagged with a related ATT&CK Technique (Credential Dumping). [PA3]"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-5.A.1-1.png": "A Specific Behavior alert for a suspicious handle being opened to lsass.exe, tagged with a related ATT&CK Technique (Credential Dumping)",
+                    "": ""
+                }
+            },
+            "5.A.2": {
+                "Procedure": "Cobalt Strike: Hash dump capability involved process injection into lsass.exe",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed a code injection into lsass.exe. The telemetry was tainted by a parent process injection alert on cmd.exe."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-5.A.1-2.png": "Telemetry showing a code injection into lsass.exe (tainted by a parent process injection alert on cmd.exe)",
+                    "": ""
+                }
+            },
+            "8.D.1": {
+                "Procedure": "Cobalt Strike: Screen capture capability involved process injection into explorer.exe",
+                "DetectionCategories": [
+                    {
+                        "Enrichment": "The capability enriched cmd.exe injecting into explorer.exe as code injection via CreateThread."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-8.D.1-2.png": "Enrichment of cmd.exe injecting into explorer.exe as code injection via CreateThread",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1018": {
+        "TechniqueName": "Remote System Discovery",
+        "TacticGroup": "Discovery",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "4.A.1": {
+                "Procedure": "Cobalt Strike: 'net group \"Domain Controllers\" /domain' via cmd",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed cmd.exe executing net with command-line arguments."
+                    },
+                    {
+                        " Enrichment": " The capability enriched the execution of net.exe as the execution of an enumeration command using net or net1."
+                    },
+                    {
+                        " Enrichment": " The capability enriched the execution of net.exe as the execution of an enumeration command."
+                    },
+                    {
+                        " Enrichment": " The capability enriched cmd.exe executing net with a related ATT&CK Technique (System Network Connections Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-4.A.1-1.png": "Telemetry showing cmd.exe executing net with command-line arguments",
+                    "PA-4.A.1-2.png": "Enrichment of the execution of net.exe as the execution of an enumeration command using net or net1",
+                    "PA-4.A.1-3.png": "Enrichment of the execution of net.exe as the execution of an enumeration command",
+                    "PA-4.A.1-4.png": "Enrichment of cmd.exe executing net with a related ATT&CK Technique (System Network Connections Discovery)",
+                    "": ""
+                }
+            },
+            "4.A.2": {
+                "Procedure": "Cobalt Strike: 'net group \"Domain Computers\" /domain' via cmd",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed cmd.exe executing net with command-line arguments."
+                    },
+                    {
+                        " Enrichment": " The capability enriched the execution of net.exe as the execution of an enumeration command using net or net1."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-4.A.2-1.png": "Telemetry showing cmd.exe executing net with command-line arguments",
+                    "PA-4.A.2-2.png": "Enrichment of the execution of net.exe as the execution of an enumeration command using net or net1 ",
+                    "": ""
+                }
+            },
+            "13.A.1": {
+                "Procedure": "Empire: 'net group \"Domain Computers\" /domain' via PowerShell",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing net with command-line arguments. The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched the execution of net.exe and net1.exe as an enumeration command. The data was tainted by a parent alert on wscript.exe. "
+                    }
+                ],
+                "Screenshots": {
+                    "PA-13.A.1-2.png": "Telemetry showing powershell.exe executing net with command-line arguments (tainted by a parent alert on wscript.exe)",
+                    "PA-13.A.1-1.png": "Enrichment of the execution of net.exe and net1.exe as an enumeration command (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1049": {
+        "TechniqueName": "System Network Connections Discovery",
+        "TacticGroup": "Discovery",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "4.C.1": {
+                "Procedure": "Cobalt Strike: 'netstat -ano' via cmd",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed cmd.exe executing netsh with command-line arguments."
+                    },
+                    {
+                        " Enrichment": " The capability enriched netstat.exe executing with the correct ATT&CK Technique (System Network Connections Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-4.C.1-1.png": "Telemetry showing cmd.exe executing netstat with command-line arguments",
+                    "PA-4.C.1-2.png": "Enrichment of netstat.exe executing with the correct ATT&CK Technique (System Network Connections Discovery)",
+                    "": ""
+                }
+            },
+            "12.E.1.12": {
+                "Procedure": "Empire: WinEnum module included enumeration of established network connections",
+                "DetectionCategories": [
+                    {
+                        "Enrichment": "The capability enriched powershell.exe executing with command-line arguments with the correct ATT&CK Technique (System Network Connections Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.E.1.12-1.png": "Enrichment of powershell.exe executing with command-line arguments with the correct ATT&CK Technique (System Network Connections Discovery)",
+                    "": ""
+                }
+            },
+            "13.B.1": {
+                "Procedure": "Empire: 'net use' via PowerShell",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing net with command-line arguments. The telemetry was tainted by a parent alert on wscript.exe."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-13.B.1-1.png": "Telemetry showing powershell.exe executing net with command-line arguments (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            },
+            "13.B.2": {
+                "Procedure": "Empire: 'netstat -ano' via PowerShell",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing netstat with command-line arguments. The telemetry was tainted by a parent alert on wscript.exe."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-13.B.2-1.png": "Telemetry showing powershell.exe executing netstat with command-line arguments (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1003": {
+        "TechniqueName": "Credential Dumping",
+        "TacticGroup": "Credential Access",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "5.A.1": {
+                "Procedure": "Cobalt Strike: Built-in Mimikatz credential dump capability executed",
+                "DetectionCategories": [
+                    {
+                        "Specific Behavior": "A Specific Behavior alert was generated for a suspicious handle being opened to lsass.exe to dump passwords. The alert was tagged with the correct ATT&CK Technique (Credential Dumping). [PA3]"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-5.A.1-1.png": "A Specific Behavior alert for a suspicious handle being opened to lsass.exe to dump password, tagged with the correct ATT&CK Technique (Credential Dumping)",
+                    "": ""
+                }
+            },
+            "5.A.2": {
+                "Procedure": "hashdump",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed a code injection into lsass.exe. The telemetry was tainted by a parent process injection alert on cmd.exe."
+                    },
+                    {
+                        " Specific Behavior": " A Specific Behavior alert was generated for svchost dumping credentials via the Registry. The alert was tagged with the correct ATT&CK Technique (Credential Dumping)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-5.A.1-2.png": "Telemetry showing a code injection into lsass.exe (tainted by a parent process injection alert on cmd.exe)",
+                    "PA-5.A.1-3.png": "Specific Behavior alert for svchost dumping credentials via the Registry tagged with the correct ATT&CK Technique (Credential Dumping)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1026": {
+        "TechniqueName": "Multiband Communication",
+        "TacticGroup": "Command and Control",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "6.B.1": {
+                "Procedure": "Cobalt Strike: C2 channel modified to split communications between both HTTP and DNS",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed command and control traffic for both ports 80 and 53 ."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-6.B.1-1.png": "Telemetry showing ports 80 and 53 command and control traffic",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1076": {
+        "TechniqueName": "Remote Desktop Protocol",
+        "TacticGroup": "Lateral Movement",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "6.C.1": {
+                "Procedure": "Cobalt Strike: C2 channel modified to proxy RDP connection to Conficker (10.0.0.5)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "\nTelemetry showed cmd.exe establishing an outbound RDP connection over port 3389 to 10.0.0.5 (Conficker). The telemetry was tainted by a parent process injection alert on cmd.exe."
+                    },
+                    {
+                        " General Behavior, Tainted": " A General Behavior alert was generated for an unexpected process using the RDP port. The data was tainted by a parent process injection alert on cmd.exe."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-6.C.1-1.png": "\nTelemetry showed cmd.exe establishing an outbound RDP connection over port 3389 to 10.0.0.5 (Conficker) (tainted by a parent process injection alert on cmd.exe)",
+                    "PA-6.C.1-2.png": "General Behavior alert for an unexpected process using the RDP port (tainted by a parent process injection alert on cmd.exe)",
+                    "": ""
+                }
+            },
+            "10.B.1": {
+                "Procedure": "RDP connection made to Conficker (10.0.0.5) as part of execution of persistence mechanism",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed a successful incoming connection to Conficker (10.0.0.5) over port 3389."
+                    },
+                    {
+                        " Enrichment": " The capability enriched the network connection over port 3389 with the correct ATT&CK Technique (Remote Desktop Protocol)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-10.B.1-2.png": "Telemetry showed a successful incoming connection to Conficker (10.0.0.5) over port 3389",
+                    "PA-10.B.1-3.png": "Enrichment of the network connection over port 3389 with the correct ATT&CK Technique (Remote Desktop Protocol)",
+                    "": ""
+                }
+            },
+            "20.A.1": {
+                "Procedure": "RDP connection made to Creeper (10.0.0.4) as part of execution of persistence mechanism",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed an inbound connection to Creeper (10.0.0.4) on port 3389."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-20.A.1-2.png": "Telemetry showing an inbound connection to Creeper (10.0.0.4) on port 3389",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1136": {
+        "TechniqueName": "Create Account",
+        "TacticGroup": "Persistence",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "7.A.1": {
+                "Procedure": "Added user Jesse to Conficker (10.0.0.5) through RDP connection",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed mmc.exe creating a Registry key for user Jesse, indicating that the user is new."
+                    },
+                    {
+                        " Enrichment": " The capability enriched the Local Users and Groups snap-in (lusrmgr.msc) executing with the correct ATT&CK Technique (Create Account)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-7.A.1-3.png": "Telemetry showing mmc.exe creating a Registry key for user Jesse ",
+                    "PA-7.A.1-4.png": "Enrichment of the Local Users and Groups snap-in (lusrmgr.msc) executing with the correct ATT&CK Technique (Create Account)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1061": {
+        "TechniqueName": "Graphical User Interface",
+        "TacticGroup": "Execution",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "7.A.1": {
+                "Procedure": "Microsoft Management Console (Local Users and Groups snap-in) GUI utility used to add new user through RDP connection",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "\t\nTelemetry showed mmc.exe, the Microsoft Management Console, executing the lusrmgr.msc (Local Users and Groups snap-in) which displays local account information."
+                    },
+                    {
+                        " Enrichment": " The capability enriched the Local Users and Groups snap-in (lusrmgr.msc) executing with the correct ATT&CK Technique (Graphical User Interface)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-7.A.1-1.png": "Telemetry showing lusrmgr.msc running from mmc.exe ",
+                    "PA-7.A.1-2.png": "Enrichment of the Local Users and Groups snap-in (lusrmgr.msc) executing with the correct ATT&CK Technique (Graphical User Interface)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1105": {
+        "TechniqueName": "Remote File Copy",
+        "TacticGroup": "Command and Control, Lateral Movement",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "7.B.1": {
+                "Procedure": "Cobalt Strike: Built-in upload capability executed to write a DLL payload (updater.dll) to disk on Nimda (10.0.1.6)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed the file create event for updater.dll."
+                    },
+                    {
+                        " Specific Behavior, Tainted": "A Specific Behavior alert was generated for a script engine creating/writing a DLL in the system32 folder. The alert was tainted by a parent process injection alert on cmd.exe."
+                    },
+                    {
+                        " Specific Behavior": " A Specific Behavior alert was generated for a Windows scripting engine creating an executable on disk."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-7.B.1-1.png": "Telemetry showed the file create event for updater.dll",
+                    "PA-7.B.1-2.png": "Specific Behavior alert for a script engine creating/writing a DLL in the system32 folder (tainted by a parent process injection alert on cmd.exe)",
+                    "PA-7.B.1-3.png": "Specific Behavior alert for a Windows scripting engine creating an executable on disk",
+                    "": ""
+                }
+            },
+            "14.A.1": {
+                "Procedure": "Empire: UAC bypass module downloaded and wrote a new Empire stager (wdbypass) to disk",
+                "DetectionCategories": [
+                    {
+                        "None": "No detection capability demonstrated for this procedure, though telemetry showed an encoded PowerShell command that could be decoded outside the capability to show the IEX command used to download the file (wdbypass) over HTTP port 8080."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-14.A.1-5.png": "Telemetry showing decoded PowerShell showing download request over HTTP (does not count as a detection due to decoding outside of capability)",
+                    "": ""
+                }
+            },
+            "16.E.1": {
+                "Procedure": "Empire: Built-in upload module executed to write malicious VBScript (autoupdate.vbs) to disk on CodeRed (10.0.1.5)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed file create and write events for autoupdate.vbs."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-16.E.1-1.png": "Telemetry showing file create and write events for autoupdate.vbs",
+                    "": ""
+                }
+            },
+            "16.G.1": {
+                "Procedure": "Empire: Built-in move capability executed to write malicious VBScript (update.vbs) to disk on Creeper (10.0.0.4)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed file create and write events for update.vbs."
+                    },
+                    {
+                        " Specific Behavior, Tainted": " A Specific Behavior alert was generated for a script being modified/moved to a remote location. The alert was tainted by a parent alert on wscript.exe."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-16.G.1-1.png": "Telemetry showed file create and write events for update.vbs",
+                    "PA-16.G.1-2.png": "Specific Behavior alert for a script being modified/moved to a remote location (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            },
+            "19.A.1": {
+                "Procedure": "Empire: Built-in upload module executed to write binary (recycler.exe) to disk on CodeRed (10.0.1.5)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed the file create and write events for recycler.exe. The telemetry was tainted by a parent alert on wscript.exe.[PA7]"
+                    },
+                    {
+                        " General Behavior, Tainted": " A General Behavior alert was generated for PowerShell dropping an executable file to disk. The alert was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " General Behavior, Tainted": " A General Behavior alert was generated for executables created to disk by the Windows scripting engine. The alert was tainted by a parent alert on wscript.exe."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-19.A.1-1.png": "Telemetry showing the file create and write events for recycler.exe (tainted by a parent alert on wscript.exe)",
+                    "PA-19.A.1-2.png": "General Behavior alert for PowerShell dropping an executable file to disk (tainted by a parent alert on wscript.exe)",
+                    "PA-19.A.1-3.png": "General Behavior alert for executables created to disk by the Windows scripting engine (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1053": {
+        "TechniqueName": "Scheduled Task",
+        "TacticGroup": "Execution",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "7.C.1": {
+                "Procedure": "Cobalt Strike: 'schtasks' via cmd to create scheduled task that executes a DLL payload (updater.dll)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed schtasks.exe creating the Resume Viewer Update Checker scheduled task as reboot persistence and as SYSTEM. The telemetry was tainted by a parent process injection alert on cmd.exe."
+                    },
+                    {
+                        " Specific Behavior, Tainted": " A Specific Behavior alert was generated for the creation of a new scheduled task. The alert was tainted by a parent process injection alert on cmd.exe.[PA4]"
+                    },
+                    {
+                        " Specific Behavior, Tainted": " A Specific Behavior alert was generated for a commonly abused host process scheduling a task. The alert was tainted by a parent process injection alert on cmd.exe.[PA4]"
+                    },
+                    {
+                        " Enrichment": " The capability enriched schtasks.exe creating the Resume Viewer Update Checker scheduled task with the correct ATT&CK Technique (Scheduled Task)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-7.C.1-1.png": "Telemetry showing schtasks.exe creating the scheduled task (tainted by a parent process injection alert on cmd.exe)",
+                    "PA-7.C.1-2.png": "Specific Behavior alert for the creation of a new scheduled task (tainted by a parent process injection alert on cmd.exe)",
+                    "PA-7.C.1-3.png": "Specific Behavior alert for a commonly abused host process scheduling a task (tainted by a parent process injection alert on cmd.exe)",
+                    "PA-7.C.1-4.png": "Enrichment of schtasks.exe creating the Resume Viewer Update Checker scheduled task with the correct ATT&CK Technique (Scheduled Task)",
+                    "": ""
+                }
+            },
+            "10.A.2": {
+                "Procedure": "Scheduled task executed when user Debbie logs on to Nimda (10.0.1.6), launching a DLL payload (updater.dll) using Rundll32",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed the execution sequence for rundll32.exe executing updater.dll with a parent of svchost.exe running with command-line arguments \"-k netsvcs -p -s Schedule\"."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-10.A.2-3.png": "Telemetry showing svchost.exe running with command-line arguments \"-k netsvcs -p -s Schedule\"",
+                    "PA-10.A.2-4.png": "Telemetry showing rundll32.exe executing updater.dll",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1083": {
+        "TechniqueName": "File and Directory Discovery",
+        "TacticGroup": "Discovery",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "8.A.1": {
+                "Procedure": "Cobalt Strike: 'dir /s /b \"\\\\conficker\\wormshare\"' via cmd",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed cmd.exe executing dir with command-line arguments. The telemetry was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched cmd.exe executing dir with command-line arguments as the execution of the dir command on a network location. The data was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    },
+                    {
+                        " Enrichment": " A General Behavior alert was generated for a commonly abused process (cmd.exe) spawning out of rundll32.exe. The alert was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-8.A.1-1.png": "Telemetry showed cmd.exe executing dir with command-line arguments (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-8.A.1-2.png": "Enrichment of cmd executing dir with command-line arguments as the execution of the dir command on a network location (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-8.A.1-4.png": "Enrichment of cmd.exe executing dir with command-line arguments with the correct ATT&CK Technique (File and Directory Discovery)",
+                    "": ""
+                }
+            },
+            "8.A.2": {
+                "Procedure": "Cobalt Strike: 'tree \"C:\\Users\\debbie\"' via cmd",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed cmd.exe executing tree with command-line arguments. The telemetry was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    },
+                    {
+                        " Enrichment": " The capability enriched cmd.exe executing tree with command-line arguments with the correct ATT&CK Technique (File and Directory Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-8.A.2-1.png": "Telemetry showed cmd.exe executing tree with command-line arguments (tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine)",
+                    "PA-8.A.2-2.png": "Enrichment of cmd.exe executing tree with command-line arguments with the correct ATT&CK Technique (File and Directory Discovery)",
+                    "": ""
+                }
+            },
+            "9.A.1": {
+                "Procedure": "Cobalt Strike: 'ls' (List) via Win32 APIs to enumerate a network shared drive (Wormshare) on Conficker (10.0.0.5)",
+                "DetectionCategories": [
+                    {
+                        "None": "No detection capability demonstrated for this procedure.[PA2]"
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "12.E.1.4.1": {
+                "Procedure": "Empire: WinEnum module included enumeration of recently opened files",
+                "DetectionCategories": [
+                    {
+                        "Enrichment": "The capability enriched powershell.exe executing with command-line arguments as suspicious and the correct ATT&CK Technique (File and Directory Discovery). "
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.E.1.4-1.png": "Enrichment of powershell.exe executing with command-line arguments as suspicious and the correct ATT&CK Technique (File and Directory Discovery)",
+                    "": ""
+                }
+            },
+            "12.E.1.4.2": {
+                "Procedure": "Empire: WinEnum module included enumeration of interesting files",
+                "DetectionCategories": [
+                    {
+                        "Enrichment": "The capability enriched powershell.exe executing with command-line arguments as suspicious and the correct ATT&CK Technique (File and Directory Discovery). "
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.E.1.4-1.png": "Enrichment of powershell.exe executing with command-line arguments as suspicious and the correct ATT&CK Technique (File and Directory Discovery)",
+                    "": ""
+                }
+            },
+            "16.K.1": {
+                "Procedure": "Empire: 'type' via PowerShell to remotely enumerate a specific file (update.vbs) on Creeper (10.0.0.4)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed a file read event for update.vbs. The telemetry was tainted by a parent alert on wscript.exe [PA7]"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-16.K.1-1.png": "Telemetry showing a file read event for update.vbs (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            },
+            "18.A.1": {
+                "Procedure": "Empire: 'Get-ChildItem' via PowerShell to enumerate a network shared drive (Wormshare) on Conficker (10.0.0.5)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed an event with the execution of the Get-ChildItem command. The telemetry was tainted by a parent alert on wscript.exe.[PA7]"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-18.A.1-1.png": "Telemetry showing an event with the execution of the Get-ChildItem command (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1056": {
+        "TechniqueName": "Input Capture",
+        "TacticGroup": "collection, Credential Access",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "8.C.1": {
+                "Procedure": "Cobalt Strike: Built-in keylogging capability executed to capture keystrokes of user Debbie",
+                "DetectionCategories": [
+                    {
+                        "Enrichment": "The capability enriched the execution of a specific API call as keylogging and suspicious activity. Though it does not count as a detection, the capability also showed code and hook injections into explorer.exe."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-8.C.1-1.png": "Enrichment of the execution of a specific API call as keylogging and suspicious activity",
+                    "PA-8.C.1-2.png": "Telemetry showing code injection into explorer.exe (does not count as a detection)",
+                    "PA-8.C.1-3.png": "Telemetry showing hook injection from explorer.exe (does not count as a detection)",
+                    "": ""
+                }
+            },
+            "15.A.1": {
+                "Procedure": "Empire: Built-in keylogging module executed to capture keystrokes of user Bob",
+                "DetectionCategories": [
+                    {
+                        "Enrichment": "The capability enriched the execution of a specific API call as keylogging and suspicious activity."
+                    },
+                    {
+                        " Indicator of Compromise": " An Indicator of Compromise alert was generated identifying a PowerShell Empire script logging keys pressed, time, and the active window."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-15.A.1-1.png": "Enrichment of the execution of a specific API call as keylogging and suspicious activity",
+                    "PA-15.A.1-2.png": "Indicator of Compromise alert identifying a PowerShell Empire script logging keys pressed, time, and the active window",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1010": {
+        "TechniqueName": "Application Window Discovery",
+        "TacticGroup": "Discovery",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "8.C.1": {
+                "Procedure": "Cobalt Strike: Keylogging capability included residual enumeration of application windows",
+                "DetectionCategories": [
+                    {
+                        "None": "No detection capability demonstrated for this procedure."
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "15.A.1": {
+                "Procedure": "Empire: Built-in keylogging module included residual enumeration of application windows",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed the decoded PowerShell script, which includes the API call GetForegroundWindow to enumerate the active window."
+                    },
+                    {
+                        " Indicator of Compromise": " An Indicator of Compromise alert was generated identifying a PowerShell Empire script logging keys pressed, time, and the active window."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-15.A.1-3.png": "Telemetry showing decoded PowerShell script containing the API call GetForegroundWindow",
+                    "PA-15.A.1-2.png": "Indicator of Compromise alert identifying a PowerShell Empire script logging keys pressed, time, and the active window",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1113": {
+        "TechniqueName": "Screen Capture",
+        "TacticGroup": "Collection",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "8.D.1": {
+                "Procedure": "Cobalt Strike: Built-in screen capture capability executed to capture screenshot of current window of user Debbie",
+                "DetectionCategories": [
+                    {
+                        "Enrichment": "The capability enriched the execution of a specific API call as information gathering using screen capture and suspicious activity."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-8.D.1-1.png": "Enrichment of the execution of a specific API call using screen capture and suspicious activity",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1039": {
+        "TechniqueName": "Data from Network Shared Drive",
+        "TacticGroup": "Collection",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "9.B.1": {
+                "Procedure": "Cobalt Strike: Built-in download capability executed to a collect file (Shockwave_rackb_diagram.vsdx) from a network shared drive (Wormshare) on Conficker (10.0.0.5)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed a file read event for the .vsdx file from the network shared drive.[PA2]"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-9.B.1-1.png": "Telemetry showing a file read event for the .vsdx file from the network shared drive",
+                    "": ""
+                }
+            },
+            "18.B.1": {
+                "Procedure": "Empire: 'copy' via PowerShell staged a file (Shockwave_network.vsdx) from a network shared drive (Wormshare) on Conficker (10.0.0.5) in the Recycle Bin (C:\\$Recycle.Bin) on CodeRed (10.0.1.5)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed a file read event for the .vsdx file from the network shared drive on 10.0.0.5 (Conficker). The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Specific Behavior, Tainted": " A Specific Behavior alert was generated for a script engine reading files from network locations. The alert was tainted by a parent alert on wscript.exe.[PA7]"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-18.B.1-1.png": "Telemetry showing a file event for the .vsdx file from the network shared drive on 10.0.0.5 (Conficker) (tainted by a parent alert on wscript.exe)",
+                    "PA-18.B.1-2.png": "Specific Behavior alert for a script engine reading files from network locations (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1041": {
+        "TechniqueName": "Exfiltration Over Command and Control Channel",
+        "TacticGroup": "Exfiltration",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "9.B.1": {
+                "Procedure": "Cobalt Strike: Download capability exfiltrated data through existing C2 channel",
+                "DetectionCategories": [
+                    {
+                        "None": "No detection capability demonstrated for this procedure, though port 53 network traffic to/from freegoogleadsenseinfo.com (C2 domain) was observed.[PA2]"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-9.B.1-2.png": "Port 53 network traffic to/from freegoogleadsenseinfo.com (C2 domain) (does not count as a detection)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1078": {
+        "TechniqueName": "Valid Accounts",
+        "TacticGroup": "Defense Evasion, Persistence, Privilege Escalation, Initial Access",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "10.B.1": {
+                "Procedure": "RDP connection to Conficker (10.0.0.5) authenticated using previously added user Jesse",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed userinit.exe as well as explorer.exe spawn as the user Jesse."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-10.B.1-1.png": "Telemetry showing userinit.exe as well as explorer.exe spawn as the user Jesse",
+                    "": ""
+                }
+            },
+            "16.B.1": {
+                "Procedure": "Empire: 'net use' via PowerShell to successfully authenticate to Conficker (10.0.0.5) using credentials of user Kmitnick",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed a net.exe logon attempt to ADMIN$ on 10.0.0.5 (Conficker) using valid credentials for user Kmitnick followed by an event for the credentials being validated by the DC. The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment": " The capability enriched an lsass.exe event with the correct ATT&CK Technique (Valid Accounts)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-16.B.1-1.png": "Telemetry showing a net.exe logon attempt to ADMIN$ on 10.0.0.5 (Conficker) using valid credentials for user Kmitnick (tainted by a parent alert on wscript.exe)",
+                    "PA-16.B.1-2.png": "Telemetry showing an event for the logon credentials being validated by the DC (tainted by a parent alert on wscript.exe)",
+                    "PA-16.B.1-3.png": "Enrichment of an lsass.exe event with the correct ATT&CK Technique (Valid Accounts).",
+                    "": ""
+                }
+            },
+            "16.D.1": {
+                "Procedure": "Empire: 'net use' via PowerShell to successfully authenticate to Creeper (10.0.0.4) using credentials of user Kmitnick",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed a net.exe logon attempt to C$ on 10.0.0.4 (Creeper) using valid credentials for user Kmitnick followed by a event for a successful login. The telemetry was tainted by a parent alert on wscript.exe."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-16.D.1-1.png": "Telemetry showing a net.exe logon attempt to C$ on 10.0.0.4 (Creeper) using valid credentials for user Kmitnick (tainted by a parent alert on wscript.exe)",
+                    "PA-16.D.1-2.png": "Telemetry showing a event for a successful login by user Kmitnick (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1086": {
+        "TechniqueName": "PowerShell",
+        "TacticGroup": "Execution",
+        "PrimaryEnabling": "Enabling",
+        "Steps": {
+            "11.A.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "12.A.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "12.A.2": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "12.B.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "12.C.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "12.D.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "12.E.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "12.F.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "12.F.2": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "12.G.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "12.G.2": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "13.A.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "13.B.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "13.B.2": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "13.C.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "15.B.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "16.A.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "16.B.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "16.C.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "16.D.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "16.E.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "16.G.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "16.H.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "16.I.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "16.J.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "16.K.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "16.L.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "17.A.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "17.B.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "17.B.2": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "17.C.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "18.A.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "18.B.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "19.D.1": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            },
+            "19.D.2": {
+                "Procedure": "",
+                "DetectionCategories": [
+                    {
+                        "": ""
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1032": {
+        "TechniqueName": "Standard Cryptographic Protocol",
+        "TacticGroup": "Command and Control",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "11.B.1": {
+                "Procedure": "Empire: Encrypted C2 channel established using HTTPS",
+                "DetectionCategories": [
+                    {
+                        "None": "No detection capability demonstrated for this procedure.[PA2]"
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1201": {
+        "TechniqueName": "Password Policy Discovery",
+        "TacticGroup": "Discovery",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "12.E.1.3": {
+                "Procedure": "Empire: WinEnum module included enumeration of password policy information",
+                "DetectionCategories": [
+                    {
+                        "None": "No detection capability demonstrated for this procedure."
+                    }
+                ],
+                "Screenshots": {
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1115": {
+        "TechniqueName": "Clipboard Data",
+        "TacticGroup": "Collection",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "12.E.1.5": {
+                "Procedure": "Empire: WinEnum module included enumeration of clipboard contents",
+                "DetectionCategories": [
+                    {
+                        "Enrichment": "The capability enriched powershell.exe executing with command-line arguments with the correct ATT&CK Technique (Clipboard Data). "
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.E.1.5-1.png": "Enrichment of powershell.exe executing with command-line arguments with the correct ATT&CK Technique (Clipboard Data)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1135": {
+        "TechniqueName": "Network Share Discovery",
+        "TacticGroup": "Discovery",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "12.E.1.9.1": {
+                "Procedure": "Empire: WinEnum module included enumeration of available shares",
+                "DetectionCategories": [
+                    {
+                        "Enrichment": "The capability enriched powershell.exe executing with command-line arguments with the correct ATT&CK Technique (Network Share Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.E.1.9-1.png": "Enrichment of powershell.exe executing with command-line arguments with the correct ATT&CK Technique (Network Share Discovery)",
+                    "": ""
+                }
+            },
+            "12.E.1.9.2": {
+                "Procedure": "Empire: WinEnum module included enumeration of mapped network drives",
+                "DetectionCategories": [
+                    {
+                        "Enrichment": "The capability enriched powershell.exe executing with command-line arguments with the correct ATT&CK Technique (Network Share Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.E.1.9-1.png": "Enrichment of powershell.exe executing with command-line arguments with the correct ATT&CK Technique (Network Share Discovery)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1063": {
+        "TechniqueName": "Security Software Discovery",
+        "TacticGroup": "Discovery",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "12.E.1.10.1": {
+                "Procedure": "Empire: WinEnum module included enumeration of AV solutions",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed an event log for the WMI query of the system AV products."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.E.1.10-2.png": "Telemetry showing an event log for the WMI query of the system AV products",
+                    "": ""
+                }
+            },
+            "12.E.1.10.2": {
+                "Procedure": "Empire: WinEnum module included enumeration of firewall rules",
+                "DetectionCategories": [
+                    {
+                        "Enrichment": "The capability enriched powershell.exe executing with command-line arguments with the correct ATT&CK Technique (Security Software Discovery)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-12.E.1.10-1.png": "Enrichment of powershell.exe executing with command-line arguments with the correct ATT&CK Technique (Security Software Discovery)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1081": {
+        "TechniqueName": "Credentials in Files",
+        "TacticGroup": "Execution",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "15.B.1": {
+                "Procedure": "Empire: 'get-content' via PowerShell to collect sensitive file (it_tasks.txt) from a network shared drive (Wormshare) on Conficker (10.0.0.5)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed a file read event for IT_tasks.txt."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-15.B.1-1.png": "Telemetry showing a file read event for IT_tasks.txt",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1110": {
+        "TechniqueName": "Brute Force",
+        "TacticGroup": "Credential Access",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "16.A.1": {
+                "Procedure": "Empire: 'net use' via PowerShell to brute force password spraying authentication attempts to Morris (10.0.1.4) and Nimda (10.0.1.6) targeting credentials of users Kmitnick, Bob, and Frieda",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed repeated logon attempts via net.exe and command-line arguments indicative of password spraying. The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " General Behavior": " A General Behavior alert was generated for sensitive administrative shares mapping with unexpected parent."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-16.A.1-1.png": "Telemetry showing net.exe logon attempt to ADMIN$ on 10.0.1.4 (Morris) as local Kmitnick (tainted by a parent alert on wscript.exe)",
+                    "PA-16.A.1-2.png": "Telemetry showing net.exe logon attempt to ADMIN$ on 10.0.1.6 (Nimda) as domain user Frieda (tainted by a parent alert on wscript.exe)",
+                    "PA-16.A.1-3.png": "Telemetry showing net.exe logon attempt to ADMIN$ on 10.0.1.6 (Nimda) as domain user Bob (tainted by a parent alert on wscript.exe)",
+                    "PA-16.A.1-4.png": "General Behavior alert for a sensitive administrative shares mapping with unexpected parent",
+                    "": ""
+                }
+            },
+            "16.B.1": {
+                "Procedure": "Empire: Successful authentication to Conficker (10.0.0.5) using credentials of user Kmitnick as a result of the brute force password spraying",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed a net.exe logon attempt to ADMIN$ on 10.0.0.5 (Conficker) as local user Kmitnick followed by an event for the credentials being validated by the DC. The telemetry was tainted by a parent alert on wscript.exe."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-16.B.1-1.png": "Telemetry showing a net.exe logon attempt to ADMIN$ on 10.0.0.5 (Conficker) as local Kmitnick (tainted by a parent alert on wscript.exe)",
+                    "PA-16.B.1-2.png": "Telemetry showing an event for the logon credentials being validated by the DC (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1077": {
+        "TechniqueName": "Windows Admin Shares",
+        "TacticGroup": "Lateral Movement",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "16.A.1": {
+                "Procedure": "Empire: Brute force password spraying attempts targeted Windows admin shares on Morris (10.0.1.4) and Nimda (10.0.1.6)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed repeated logon attempts via net.exe and command-line arguments indicative of password spraying. The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Specific Behavior": " A Specific Behavior alert was generated for a net.exe logon attempt to ADMIN$. The alert was tagged with the correct ATT&CK Technique (Windows Admin Shares)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-16.A.1-1.png": "Telemetry showing net.exe logon attempt to ADMIN$ on 10.0.1.4 (Morris) as local user Kmitnick (tainted by a parent alert on wscript.exe)",
+                    "PA-16.A.1-2.png": "Telemetry showing net.exe logon attempt to ADMIN$ on 10.0.1.6 (Nimda) as domain user Frieda (tainted by a parent alert on wscript.exe)",
+                    "PA-16.A.1-3.png": "Telemetry showing net.exe logon attempt to ADMIN$ on 10.0.1.6 (Nimda) as domain user Bob (tainted by a parent alert on wscript.exe)",
+                    "PA-16.A.1-5.png": "Specific Behavior alert for a net.exe logon attempt to ADMIN$ tagged with the correct ATT&CK Technique (Windows Admin Shares)",
+                    "": ""
+                }
+            },
+            "16.B.1": {
+                "Procedure": "Empire: Successful authentication targeted Windows admin share on Conficker (10.0.0.5) ",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed a net.exe logon attempt to ADMIN$ on 10.0.0.5 (Conficker) as local Kmitnick. The telemetry was tainted by a parent alert on wscript.exe."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-16.B.1-1.png": "Telemetry showing a net.exe logon attempt to ADMIN$ on 10.0.0.5 (Conficker) as local user Kmitnick (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            },
+            "16.D.1": {
+                "Procedure": "Empire: Successful authentication targeted Windows admin shares on Conficker (10.0.0.5)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed a net.exe logon attempt to C$ on 10.0.0.4 (Creeper) using valid credentials for user Kmitnick. The telemetry was tainted by a parent alert on wscript.exe."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-16.D.1-1.png": "Telemetry showing a net.exe logon attempt to C$ on 10.0.0.4 (Creeper) using valid credentials for user Kmitnick (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1126": {
+        "TechniqueName": "Network Share Connection Removal",
+        "TacticGroup": "Defense Evasion",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "16.C.1": {
+                "Procedure": "Empire: 'net use /delete' via PowerShell",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing net with command-line arguments. The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment": " The capability enriched net.exe executing with command-line arguments with the correct ATT&CK Technique (Network Share Connection Removal)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-16.C.1-1.png": "Telemetry showing powershell.exe executing net with command-line arguments (tainted by a parent alert on wscript.exe)",
+                    "PA-16.C.1-2.png": "Enrichment of net.exe executing with command-line arguments with the correct ATT&CK Technique (Network Share Connection Removal)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1036": {
+        "TechniqueName": "Masquerading",
+        "TacticGroup": "Defense Evasion",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "16.I.1": {
+                "Procedure": "Empire: 'sc description' via PowerShell to remotely disguise a service on Creeper (10.0.0.4)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed execution of sc.exe with command-line arguments to set the service description. An analyst could use this information to determine it is not a legitimate service. The telemetry was tainted by a parent alert on wscript.exe."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-16.I.1-5.png": "Telemetry showed execution of sc.exe with command-line arguments (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            },
+            "19.A.1": {
+                "Procedure": "Empire: File dropped to disk is a renamed copy of the WinRAR binary",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed the MD5 and SHA256 hash values of recycler.exe when it was written to disk, which an analyst could use to determine recycler.exe was actually WinRAR. The telemetry was tainted by a parent alert on wscript.exe.[PA7]"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-19.A.1-1.png": "Telemetry showing file create/write and hash values of recycler.exe (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            },
+            "19.B.1": {
+                "Procedure": "Empire: Executed binary (recycler.exe) is a renamed copy of the WinRAR binary",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed recycler.exe with full command-line arguments, including the use of the -hp flag to encrypt and compress data, indicating the WinRAR utility was in use. The telemetry was tainted by a parent alert on wscript.exe"
+                    },
+                    {
+                        " Enrichment": " The capability enriched recylcer.exe executing with command-line arguments with a related ATT&CK Technique (Masquerading)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-19.B.1-1.png": "Telemetry showing recycler.exe execution (tainted by a parent alert on wscript.exe)",
+                    "PA-19.B.1-2.png": "Enrichment of recylcer.exe executing with command-line arguments with a related ATT&CK Technique (Masquerading)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1050": {
+        "TechniqueName": "New Service",
+        "TacticGroup": "Persistence, Privilege Escalation",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "16.I.1": {
+                "Procedure": "Empire: 'sc create' via PowerShell to remotely create a service on Creeper (10.0.0.4)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed execution of sc.exe with command-line arguments to create a new AdobeUpdater service containing a binPath pointed to cmd.exe with arguments to execute update.vbs. Telemetry also showed the creation of Registry keys associated with this new service. The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Specific Behavior, Tainted": " A Specific Behavior alert was generated for a new service created via the command line. The alert was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment": " The capability enriched sc.exe executing with the correct ATT&CK Technique (New Service)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-16.I.1-1.png": "Telemetry showing execution of sc.exe to create a new AdobeUpdater service (tainted by a parent alert on wscript.exe)",
+                    "PA-16.I.1-2.png": "Telemetry showing the creation of Registry keys associated with the AdobeUpdater service ",
+                    "PA-16.I.1-3.png": "Specific Behavior alert for a new service created via the command line (tainted by a parent alert on wscript.exe)",
+                    "PA-16.I.1-4.png": "Enrichment of sc.exe executing with the correct ATT&CK Technique (New Service)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1035": {
+        "TechniqueName": "Service Execution",
+        "TacticGroup": "Exectuion",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "16.L.1": {
+                "Procedure": "Empire: 'sc start' via PowerShell to remotely launch a specific service on Creeper (10.0.0.4)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing sc with command-line arguments. As part of the service, telemetry also showed cmd.exe executing update.vbs on 10.0.0.4 (Creeper). The telemetry was tainted by a parent alert on wscript.exe."
+                    },
+                    {
+                        " Enrichment": " The capability enriched sc.exe executing with command-line arguments with the correct ATT&CK Technique (Service Execution)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-16.L.1-1.png": "Telemetry showing powershell.exe executing sc with command-line arguments (tainted by a parent alert on wscript.exe)",
+                    "PA-16.L.1-2.png": "Telemetry showing cmd.exe executing update.vbs on 10.0.0.4 (Creeper)",
+                    "PA-16.L.1-3.png": "Enrichment of sc.exe executing with command-line arguments with the correct ATT&CK Technique (Service Execution)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1222": {
+        "TechniqueName": "File Permissions Modification",
+        "TacticGroup": "Defense Evasion",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "17.B.1": {
+                "Procedure": "Empire: 'takeown' via PowerShell to obtain ownership of magnify.exe",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing takeown with command-line arguments. The telemetry was tainted by a parent alert on cmd.exe."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched takeown.exe executing with command-line arguments as changing permission or ownership of a file or folder. The data was tainted by a parent alert on cmd.exe."
+                    },
+                    {
+                        " Enrichment": " The capability enriched reg.exe executing with command-line arguments with the correct ATT&CK Technique (File Permissions Modification)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-17.B.1-1.png": "Telemetry showing powershell.exe executing takeown with command-line arguments (tainted by a parent alert on cmd.exe)",
+                    "PA-17.B.1-2.png": "Enrichment of takeown.exe executing with command-line arguments as changing permission or ownership of a file or folder (tainted by a parent alert on cmd.exe)",
+                    "PA-17.B.1-3.png": "Enrichment of takeown.exe executing with command-line arguments with the correct ATT&CK Technique (File Permissions Modification).",
+                    "": ""
+                }
+            },
+            "17.B.2": {
+                "Procedure": "Empire: 'icacls' via PowerShell to modify the DACL for magnify.exe",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed powershell.exe executing icalcs with command-line arguments. The telemetry was tainted by a parent alert on cmd.exe."
+                    },
+                    {
+                        " Enrichment": " The capability enriched icalcs.exe executing with command-line arguments with the correct ATT&CK Technique (File Permissions Modification)."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-17.B.2-1.png": "Telemetry showing powershell.exe executing icacls with command-line arguments (tainted by a parent alert on cmd.exe)",
+                    "PA-17.B.2-2.png": "Enrichment of icacls.exe executing with command-line arguments with the correct ATT&CK Technique (File Permissions Modification).",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1015": {
+        "TechniqueName": "Accessibility Features",
+        "TacticGroup": "Persistence, Privilege Escalation",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "17.C.1": {
+                "Procedure": "Empire: 'copy' via PowerShell to overwrite magnify.exe with cmd.exe",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed file write events overwriting magnify.exe in the system directory as well as the change in the hash of the file. The telemetry was tainted by a parent alert on cmd.exe.[PA7]"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-17.C.1-1.png": "Telemetry showing file write events overwriting magnify.exe in the system directory (tainted by a parent alert on cmd.exe)",
+                    "PA-17.C.1-2.png": "Telemetry showing change in the hash of magnify.exe",
+                    "": ""
+                }
+            },
+            "20.A.1": {
+                "Procedure": "magnifer.exe previously overwritten by cmd.exe launched through RDP connection made to Creeper (10.0.0.4)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry": "Telemetry showed magnify.exe executing from utilman.exe."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-20.A.1-1.png": "Telemetry showing magnify.exe executing from utilman.exe",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1074": {
+        "TechniqueName": "Data Staged",
+        "TacticGroup": "Collection",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "18.B.1": {
+                "Procedure": "Empire: 'copy' via PowerShell collected a file (Shockwave_network.vsdx) from a network shared drive (Wormshare) on Conficker (10.0.0.5)",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed file read and write events for the .vsdx file from the network shared drive on 10.0.0.5 (Conficker) to the Recycle Bin. The telemetry was tainted by a parent alert on wscript.exe."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-18.B.1-1.png": "Telemetry showing file read and write events for the .vsdx file from the network shared drive on 10.0.0.5 (Conficker) to the Recycle Bin (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1002": {
+        "TechniqueName": "Data Compressed",
+        "TacticGroup": "Exfiltration",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "19.B.1": {
+                "Procedure": "Empire: Executed binary (recycler.exe) created compressed archive (old.rar) of previously collected file",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed recycler.exe with full command-line arguments, including the use of the -hp flag to encrypt and compress data, indicating the WinRAR utility was in use. The telemetry was tainted by a parent alert on wscript.exe"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-19.B.1-1.png": "Telemetry showing recycler.exe execution (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1022": {
+        "TechniqueName": "Data Encrypted",
+        "TacticGroup": "Exfiltration",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "19.B.1": {
+                "Procedure": "Empire: Executed binary (recycler.exe) created encrypted archive (old.rar) of previously collected file",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed recycler.exe with full command-line arguments, including the use of the -hp flag to encrypt and compress data, indicating the WinRAR utility was in use. tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-19.B.1-1.png": "Telemetry showing recycler.exe execution (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1048": {
+        "TechniqueName": "Exfiltration Over Alternative Protocol",
+        "TacticGroup": "Exfiltration",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "19.C.1": {
+                "Procedure": "Empire: Sequence of 'echo' commands via PowerShell to populate commands in text file (ftp.txt), which is then executed by FTP to exfil data through network connection separate of existing C2 channel",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed the execution of ftp.exe and command-line arguments as well as a an outbound FTP connection to 192.168.0.4 (C2 server) on TCP port 21. The telemetry was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    },
+                    {
+                        " Enrichment, Tainted": " The capability enriched ftp.exe as the execution of a CLI file transfer/copy utility. The data was tainted by a parent alert related to Resume Viewer.exe and suspicious execution of the Windows Scripting Engine."
+                    }
+                ],
+                "Screenshots": {
+                    "PA-19.C.1-1.png": "Telemetry showing ftp.exe execution (tainted by a parent alert on wscript.exe)",
+                    "PA-19.C.1-2.png": "Telemetry showing an outbound FTP connection to 192.168.0.4 (C2 server) on TCP port 21 (tainted by a parent alert on wscript.exe)",
+                    "PA-19.C.1-3.png": "Enrichment of ftp.exe as the execution of a CLI file transfer/copy utility (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            }
+        }
+    },
+    "T1107": {
+        "TechniqueName": "File Deletion",
+        "TacticGroup": "Defense Evasion",
+        "PrimaryEnabling": "Primary",
+        "Steps": {
+            "19.D.1": {
+                "Procedure": "Empire: 'del C:\\\"$\"Recycle.bin\\old.rar'",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed the file delete event for old.rar. The telemetry was tainted by a parent alert on wscript.exe.[PA7]"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-19.D.1-1.png": "Telemetry showing the file delete event for old.rar (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            },
+            "19.D.2": {
+                "Procedure": "Empire: 'del recycler.exe'",
+                "DetectionCategories": [
+                    {
+                        "Telemetry, Tainted": "Telemetry showed the file delete event for recycler.exe. The telemetry was tainted by a parent alert on wscript.exe.[PA7]"
+                    }
+                ],
+                "Screenshots": {
+                    "PA-19.D.1-1.png": "Telemetry showing the file delete event for recycler.exe (tainted by a parent alert on wscript.exe)",
+                    "": ""
+                }
+            }
+        }
+    }
+}
