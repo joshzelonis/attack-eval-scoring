@@ -27,6 +27,7 @@ scoring = { 'Specific Behavior':5,                                          \
             'Telemetry':1,                                                  \
             'Telemetry, Tainted':1,                                         \
             'Telemetry,Tainted':1,                                          \
+            'Telemetry, Delayed':1,                                         \
             'Specific Behavior,Configuration Change':0,                     \
             'General Behavior,Configuration Change':0,                      \
             'General Behavior, Configuration Change, Delayed, Tainted':0,   \
