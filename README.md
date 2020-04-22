@@ -1,4 +1,8 @@
 # attack-eval-scoring
+
+This project represented my attempts at analyzing the results of round 1 of the MITRE Enterprise ATT&CK Evaluation. With the release of round 2 results, please check out my new project:
+https://github.com/joshzelonis/EnterpriseAPT29Eval
+
 For my initial blog post on the subject, check out:
 https://go.forrester.com/blogs/measuring-vendor-efficacy-using-the-mitre-attck-evaluation/
 
